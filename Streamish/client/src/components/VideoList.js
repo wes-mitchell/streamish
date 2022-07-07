@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Video from './Video';
-import { getAllVideosWithComments } from "../modules/videoManager";
+import { getAllVideosWithComments, searchVideosByTitle } from "../modules/videoManager";
 
 const VideoList = () => {
   const [videos, setVideos] = useState([]);
@@ -9,11 +9,21 @@ const VideoList = () => {
     getAllVideosWithComments().then(videos => setVideos(videos));
   };
 
+  const searchVideos = (query) => {
+    searchVideosByTitle(query)
+    .then(videos => setVideos(videos));
+  }
+  
+  const handleFieldChange = (e) => {
+    searchVideos(e.target.value)
+  }
   useEffect(() => {
     getVideos();
   }, []);
 
   return (
+    <>
+    <input type="text" className="search" onChange={handleFieldChange}/>
     <div className="container">
       <div className="row justify-content-center">
         {videos.map((video) => (
@@ -21,6 +31,7 @@ const VideoList = () => {
         ))}
       </div>
     </div>
+    </>
   );
 };
 
