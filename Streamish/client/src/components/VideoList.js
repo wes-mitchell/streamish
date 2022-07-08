@@ -1,19 +1,21 @@
 import React, { useEffect, useState } from "react";
 import Video from './Video';
 import { getAllVideosWithComments, searchVideosByTitle } from "../modules/videoManager";
+import VideoForm from "./VideoForm";
 
 const VideoList = () => {
   const [videos, setVideos] = useState([]);
 
   const getVideos = () => {
-    getAllVideosWithComments().then(videos => setVideos(videos));
+    getAllVideosWithComments()
+    .then(videos => setVideos(videos));
   };
 
   const searchVideos = (query) => {
     searchVideosByTitle(query)
     .then(videos => setVideos(videos));
   }
-  
+
   const handleFieldChange = (e) => {
     searchVideos(e.target.value)
   }
@@ -23,6 +25,7 @@ const VideoList = () => {
 
   return (
     <>
+    <h3>Search For a Video</h3>
     <input type="text" className="search" onChange={handleFieldChange}/>
     <div className="container">
       <div className="row justify-content-center">
