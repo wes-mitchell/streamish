@@ -39,6 +39,39 @@ namespace Streamish.Repositories
                 }
             }
         }
+
+        public UserProfile GetByFirebaseId(string id)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"SELECT * FROM UserProfile WHERE FirebaseUserId = @id";
+                    DbUtils.AddParameter(cmd, "@id", id);
+                    
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        UserProfile userProfile = null;
+
+                        if (reader.Read())
+                        {
+                            userProfile = new UserProfile
+                            {
+                                Id = DbUtils.GetInt(reader, "Id"),
+                                Name = DbUtils.GetString(reader, "Name"),
+                                Email = DbUtils.GetString(reader, "Email"),
+                                DateCreated = DbUtils.GetDateTime(reader, "DateCreated"),
+                                ImageUrl = DbUtils.GetString(reader, "ImageUrl")
+
+                            };
+                        }
+                        return userProfile;
+                    }
+                }
+            }
+        }
+
         public void Add(UserProfile userProfile)
         {
             using (var conn = Connection)
