@@ -77,6 +77,29 @@ export const getVideo = (id) => {
   })
 }
 
+export const updateVideo = (video) => { 
+  return getToken().then((token) => {
+  return fetch(`${baseUrl}/edit/${video.id}`, {
+    method: "PUT",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(video)
+  }).then((res) => {
+    if (res.ok) {
+      res.json();
+    } else if (res.status === 401) {
+      throw new Error("Unauthorized");
+    } else {
+      throw new Error(
+        "An unknown error occurred while trying to save a new quote.",
+      );
+    }
+  });
+});
+};
+
 export const addVideo = (video) => {
   return getToken().then((token) => {
     return fetch(baseUrl, {

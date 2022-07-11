@@ -107,7 +107,7 @@ namespace Streamish.Controllers
             return CreatedAtAction("Get", new { id = video.Id }, video);
         }
 
-        [HttpPut("{id}")]
+        [HttpPut("edit/{id}")]
         public IActionResult Put(int id, Video video)
         {
             if (id != video.Id)

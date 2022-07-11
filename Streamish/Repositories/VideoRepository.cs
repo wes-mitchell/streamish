@@ -271,16 +271,14 @@ namespace Streamish.Repositories
                         UPDATE Video
                            SET Title = @Title,
                                Description = @Description,
-                               DateCreated = @DateCreated,
-                               Url = @Url,
-                               UserProfileId = @UserProfileId
+                               Url = @Url
                          WHERE Id = @Id";
 
                     DbUtils.AddParameter(cmd, "@Title", video.Title);
                     DbUtils.AddParameter(cmd, "@Description", video.Description);
-                    DbUtils.AddParameter(cmd, "@DateCreated", video.DateCreated);
+                    //DbUtils.AddParameter(cmd, "@DateCreated", video.DateCreated);
                     DbUtils.AddParameter(cmd, "@Url", video.Url);
-                    DbUtils.AddParameter(cmd, "@UserProfileId", video.UserProfileId);
+                    //DbUtils.AddParameter(cmd, "@UserProfileId", video.UserProfileId);
                     DbUtils.AddParameter(cmd, "@Id", video.Id);
 
                     cmd.ExecuteNonQuery();

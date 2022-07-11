@@ -21,8 +21,11 @@ const Video = ({ video }) => {
         </p>
         <p>{video.description}</p>
         {video.comments?.map((comment) => (
-          <p><strong>Comment: </strong>{comment.message}</p>
+          <p key={comment.id}><strong>Comment: </strong>{comment.message}</p>
         ))}
+        <Link to={`/videos/edit/${video.id}`}>
+          Edit
+        </Link>
       </CardBody>
     </Card>
   );

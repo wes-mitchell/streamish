@@ -19,10 +19,10 @@ const Header = ({isLoggedIn}) => {
           </Link>
         </li>
         <li className="nav-item">
-          <Link onClick={isLoggedIn = null} to="/login" className="nav-link">
+          <Link onClick={isLoggedIn = false} to="/login" className="nav-link">
             Logout
           </Link>
-        </li>
+        </li> 
       </ul>
     </nav>
   );
