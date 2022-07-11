@@ -26,6 +26,10 @@ const Video = ({ video }) => {
         <Link to={`/videos/edit/${video.id}`}>
           Edit
         </Link>
+        <br/>
+        <Link to={`/videos/delete/${video.id}`}>
+          Delete Video
+        </Link>
       </CardBody>
     </Card>
   );

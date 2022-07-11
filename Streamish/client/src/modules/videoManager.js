@@ -70,7 +70,7 @@ export const getVideo = (id) => {
         if (res.ok) {
           return res.json()
         } else {
-          throw new Error("An unknown error occurred while trying to get videos.",
+          throw new Error("An unknown error occurred while trying to get the video.",
           )
         }
       })
@@ -93,7 +93,7 @@ export const updateVideo = (video) => {
       throw new Error("Unauthorized");
     } else {
       throw new Error(
-        "An unknown error occurred while trying to save a new quote.",
+        "An unknown error occurred while trying to update the video.",
       );
     }
   });
@@ -116,9 +116,31 @@ export const addVideo = (video) => {
         throw new Error("Unauthorized");
       } else {
         throw new Error(
-          "An unknown error occurred while trying to save a new quote.",
+          "An unknown error occurred while trying to save a new video.",
         );
       }
     });
   });
+};
+
+export const deleteVideo = (videoId) => {
+  return getToken().then((token) => {
+  return fetch(`${baseUrl}/${videoId}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-type": "application/json",
+      }
+  }).then((res) => {
+    if (res.ok) {
+      res.json();
+    } else if (res.status === 401) {
+      throw new Error("Unauthorized");
+    } else {
+      throw new Error(
+        "An unknown error occurred while trying to delete the video.",
+      );
+    }
+  });
+});
 };

@@ -7,7 +7,7 @@ import Login from "./Login.js";
 import Register from "./Register.js";
 import { useNavigate } from "react-router-dom";
 import { VideoEditForm } from "./VideoEditForm";
-
+import { ConfirmDelete } from "./ConfirmDelete";
 
 const ApplicationViews = ({ isLoggedIn }) => {
 const navigate = useNavigate();
@@ -21,6 +21,7 @@ const navigate = useNavigate();
           <Route path="add" element={isLoggedIn ? <VideoForm/> : navigate("login") } />
           <Route path=":id" element={isLoggedIn ? <VideoDetails/> : navigate("login") } />
           <Route path="edit/:id" element={isLoggedIn ? <VideoEditForm/> : navigate("login") } />
+          <Route path="delete/:id" element={isLoggedIn ? <ConfirmDelete/> : navigate("login") } />
         </Route>
       </Route>
       <Route path="*" element={<p>Whoops, nothing here...</p>} />
