@@ -32,6 +32,15 @@
   max-width: 300px;
 }
 
+.loginContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.loginForm {
+  max-width: 300px;
+}
+
 .search {
   margin-bottom: 10px;
 }
